@@ -25,5 +25,16 @@ appctl info houston
 
 ---
 
+## 📜 Upstream Attribution & Acknowledgments
+
+- **Upstream Project**: [Houston](https://github.com/gethouston/houston)
+- **Official Site**: [gethouston.ai](https://gethouston.ai)
+- **Engine Container**: `ghcr.io/gethouston/houston-engine-pod`
+- **Upstream License**: Apache License 2.0 / MIT
+
+This homelab repository provides the infrastructure automation, Traefik ingress configuration, and deployment definitions for hosting Houston in the `roadtotech.me` cluster. All original Houston branding, logos, and engine code are the property of their respective creators at [gethouston](https://github.com/gethouston).
+
+---
+
 ## 📄 License
-This deployment configuration is released into the public domain under the [Unlicense](LICENSE).
+This deployment configuration and homelab integration is released into the public domain under [The Unlicense](LICENSE).
