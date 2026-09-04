@@ -1,0 +1,18 @@
+name: "houston"
+aliases:
+  - "agent"
+  - "agents"
+domain: "houston.roadtotech.me"
+description: "Houston Autonomous AI Agent Host & Runtime"
+visible: true
+auth: false
+networks:
+  - proxy-net
+env:
+  HOUSTON_HOST_TOKEN: "supersecrettokenforhoustonhostinproduction"
+homepage:
+  title: "Houston"
+  group: "Development & AI"
+  icon: "houston.png"
+  container: "houston"
+  weight: 15

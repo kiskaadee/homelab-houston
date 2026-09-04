@@ -1,0 +1,35 @@
+services:
+  houston:
+    image: ghcr.io/gethouston/houston-engine-pod:latest
+    container_name: ${CONTAINER_NAME:-houston}
+    restart: unless-stopped
+    environment:
+      - HOUSTON_HOST_TOKEN=${HOUSTON_HOST_TOKEN:-supersecrettokenforhoustonhostinproduction}
+      - COMPOSIO_API_KEY=${COMPOSIO_API_KEY:-}
+      - SENTRY_DSN=${SENTRY_DSN:-}
+    volumes:
+      - houston-data:/data
+    networks:
+      - proxy-net
+    labels:
+      - "traefik.enable=true"
+      # HTTPS Router
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}.rule=Host(`${SERVICE_DOMAIN}`)"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}.entrypoints=websecure"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}.tls=true"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}.service=${CONTAINER_NAME:-houston}-svc"
+      # HTTP to HTTPS Redirect
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}-red.rule=Host(`${SERVICE_DOMAIN}`)"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}-red.entrypoints=web"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}-red.middlewares=https-redirect@docker"
+      # Target Port (Houston engine listens on 4318)
+      - "traefik.http.services.${CONTAINER_NAME:-houston}-svc.loadbalancer.server.port=4318"
+
+volumes:
+  houston-data:
+
+networks:
+  proxy-net:
+    name: ${PROXY_NETWORK:-proxy-net}
+    external: true
+
