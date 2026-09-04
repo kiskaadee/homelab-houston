@@ -17,6 +17,7 @@ services:
       - "traefik.http.routers.${CONTAINER_NAME:-houston}.rule=Host(`${SERVICE_DOMAIN}`)"
       - "traefik.http.routers.${CONTAINER_NAME:-houston}.entrypoints=websecure"
       - "traefik.http.routers.${CONTAINER_NAME:-houston}.tls=true"
+      - "traefik.http.routers.${CONTAINER_NAME:-houston}.middlewares=authelia-auth@docker"
       - "traefik.http.routers.${CONTAINER_NAME:-houston}.service=${CONTAINER_NAME:-houston}-svc"
       # HTTP to HTTPS Redirect
       - "traefik.http.routers.${CONTAINER_NAME:-houston}-red.rule=Host(`${SERVICE_DOMAIN}`)"

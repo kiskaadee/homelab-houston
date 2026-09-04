@@ -5,7 +5,7 @@ aliases:
 domain: "houston.roadtotech.me"
 description: "Houston Autonomous AI Agent Host & Runtime"
 visible: true
-auth: false
+auth: true
 networks:
   - proxy-net
 env:
@@ -13,6 +13,6 @@ env:
 homepage:
   title: "Houston"
   group: "Development & AI"
-  icon: "houston.png"
+  icon: "houston.svg"
   container: "houston"
   weight: 15
